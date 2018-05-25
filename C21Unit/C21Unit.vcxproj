@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{569A15A1-AEE8-486F-98D7-57C29CA01B76}</ProjectGuid>
-    <RootNamespace>C21</RootNamespace>
+    <ProjectGuid>{73A98D57-CA9E-4A24-BBBE-5BAFA94374AC}</ProjectGuid>
+    <RootNamespace>C21Unit</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -110,22 +110,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Card.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Hand.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Strategy.cpp" />
-    <ClCompile Include="test00.cpp" />
-    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Test00.cpp" />
+    <ClCompile Include="Test01.cpp" />
+    <ClCompile Include="Test02.cpp" />
+    <ClCompile Include="Test03.cpp" />
+    <ClCompile Include="Test04.cpp" />
+    <ClCompile Include="Test05.cpp" />
+    <ClCompile Include="Test06.cpp" />
+    <ClCompile Include="Test07.cpp" />
+    <ClCompile Include="Test08.cpp" />
+    <ClCompile Include="Test09.cpp" />
+    <ClCompile Include="Test0A.cpp" />
+    <ClCompile Include="Test0B.cpp" />
+    <ClCompile Include="Test0C.cpp" />
+    <ClCompile Include="Test0D.cpp" />
+    <ClCompile Include="Test0E.cpp" />
+    <ClCompile Include="Test0F.cpp" />
+    <ClCompile Include="Test10.cpp" />
+    <ClCompile Include="Test11.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Card.h" />
-    <ClInclude Include="GA.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Hand.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Strategy.h" />
-    <ClInclude Include="Utils.h" />
+    <ProjectReference Include="..\C21\C21.vcxproj">
+      <Project>{569a15a1-aee8-486f-98d7-57c29ca01b76}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
