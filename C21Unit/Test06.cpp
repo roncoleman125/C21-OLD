@@ -6,7 +6,7 @@
 void test06() {
 	Hand hand = Hand_();
 
-	Card card1 = Card_(2, DIAMONDS);
+	Card card1 = Card_(TWO, DIAMONDS);
 	hit(&hand, &card1);
 
 	Card card2 = Card_(ACE, HEARTS);

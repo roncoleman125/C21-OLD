@@ -1,4 +1,26 @@
+/*
+Copyright (c) Ron Coleman
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 #include <assert.h>
+#include "Utils.h"
 #include "Strategy.h"
 
 static int plays[NUMBER_RULES];
@@ -87,7 +109,7 @@ Strategy BasicStrategy_() {
 			/*7 */		H, H, H, H, H, H, H, H, H, H,
 			/*6 */		H, H, H, H, H, H, H, H, H, H,
 			/*5 */		H, H, H, H, H, H, H, H, H, H,
-			/*4 */		H, H, H, H, H, H, H, H, H, H, // Accomodate limited splits
+			/*4 */		H, H, H, H, H, H, H, H, H, H, // Accomodate splitback.
 
 			/*A,K */	S, S, S, S, S, S, S, S, S, S, // Section III: lower=18, upper=29
 			/*A,Q */	S, S, S, S, S, S, S, S, S, S,
@@ -120,7 +142,7 @@ Strategy BasicStrategy_() {
 }
 
 typedef struct {
-	Int lower, upper;
+	int lower, upper;
 } Entry;
 
 Entry jumpTab[] = {
@@ -143,18 +165,18 @@ Play doSection4(Hand* hand, Card* upcard, Strategy* strategy) {
 
 	assert(card1.rank == card2.rank);
 
-	Int offset = 0;
+	int offset = 0;
 
 	if (!isAce(&card1))
 		offset = KING - card1.rank + 1;
 	assert(offset >= 0);
 
-	Int row = jumpTab[SECTION4].lower + offset;
+	int row = jumpTab[SECTION4].lower + offset;
 	assert(row >= jumpTab[SECTION4].lower && row <= jumpTab[SECTION4].upper);
 
-	Int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
+	int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
 
-	Int index = row * 10 + col;
+	int index = row * 10 + col;
 	plays[index]++;
 
 	Play play = strategy->rules[index];
@@ -173,15 +195,15 @@ Play doSection3(Hand* hand, Card* upcard, Strategy* strategy) {
 	if (card1.rank == ACE)
 		card = card2;
 
-	Int offset = KING - card.rank;
+	int offset = KING - card.rank;
 	assert(offset >= 0);
 
-	Int row = jumpTab[SECTION3].lower + offset;
+	int row = jumpTab[SECTION3].lower + offset;
 	assert(row >= jumpTab[SECTION3].lower && row <= jumpTab[SECTION3].upper);
 
-	Int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
+	int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
 
-	Int index = row * 10 + col;
+	int index = row * 10 + col;
 	plays[index]++;
 
 	Play play = strategy->rules[index];
@@ -192,15 +214,15 @@ Play doSection3(Hand* hand, Card* upcard, Strategy* strategy) {
 Play doSection2(Hand* hand, Card* upcard, Strategy* strategy) {
 	assert(hand->size >= 2 && hand->value >= 4 && hand->value <= 11);
 
-	Int offset = 11 - hand->value;
+	int offset = 11 - hand->value;
 	assert(offset >= 0);
 
-	Int row = jumpTab[SECTION2].lower + offset;
+	int row = jumpTab[SECTION2].lower + offset;
 	assert(row >= jumpTab[SECTION2].lower && row <= jumpTab[SECTION2].upper);
 
-	Int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
+	int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
 
-	Int index = row * 10 + col;
+	int index = row * 10 + col;
 	plays[index]++;
 
 	Play play = strategy->rules[index];
@@ -215,15 +237,15 @@ Play doSection2(Hand* hand, Card* upcard, Strategy* strategy) {
 Play doSection1(Hand* hand, Card* upcard, Strategy* strategy) {
 	assert(hand->size >= 2 && hand->value >= 12 && hand->value <= 21);
 
-	Int offset = 21 - hand->value;
+	int offset = 21 - hand->value;
 	assert(offset >= 0);
 
-	Int row = jumpTab[SECTION1].lower + offset;
+	int row = jumpTab[SECTION1].lower + offset;
 	assert(row >= jumpTab[SECTION1].lower && row <= jumpTab[SECTION1].upper);
 
-	Int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
+	int col = isAce(upcard) ? 9 : RANK(upcard->rank) - 2;
 
-	Int index = row * 10 + col;
+	int index = row * 10 + col;
 	plays[index]++;
 
 	Play play = strategy->rules[index];

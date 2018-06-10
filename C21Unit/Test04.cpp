@@ -9,10 +9,10 @@ void test04() {
 	Card card1 = Card_(ACE, DIAMONDS);
 	hit(&hand, &card1);
 
-	Card card2 = Card_(10, HEARTS);
+	Card card2 = Card_(TEN, HEARTS);
 	hit(&hand, &card2);
 
-	Card upcard = Card_(7, SPADES);
+	Card upcard = Card_(SEVEN, SPADES);
 
 	Strategy bs = BasicStrategy_();
 	Play play = doSection3(&hand, &upcard, &bs);

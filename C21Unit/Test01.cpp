@@ -12,7 +12,7 @@ void test01() {
 	Card card2 = Card_(ACE, HEARTS);
 	hit(&hand, &card2);
 
-	Card upcard = Card_(2, SPADES);
+	Card upcard = Card_(TWO, SPADES);
 
 	Strategy bs = BasicStrategy_();
 	Play play = doSection4(&hand, &upcard, &bs);

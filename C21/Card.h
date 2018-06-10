@@ -1,27 +1,111 @@
+/*
+Copyright (c) Ron Coleman
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 #pragma once
-#include "Utils.h"
 
-typedef enum { NO_SUIT = 0, HEARTS = 'H', SPADES = 'S', DIAMONDS = 'D', CLUBS = 'C' } Suit;
-//typedef enum { NO_RANK, ACE = 1, JACK = 11, QUEEN = 12, KING = 13 } Face;
-typedef enum { NO_RANK=0, ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING } Rank;
+/*! \enum Suit
+    \brief Suits in shoe
+*/
+typedef enum {
+	NO_SUIT = 0,     /**< Default suit */
+	HEARTS = 'H',
+	SPADES = 'S',
+	DIAMONDS = 'D',
+	CLUBS = 'C'
+} Suit;
 
+/*! 
+  \enum Rank
+  \brief Ranks in shoe
+*/
+typedef enum {
+	NO_RANK=0,        /**< Default rank */
+	ACE,
+	TWO, 
+	THREE, 
+	FOUR, 
+	FIVE, 
+	SIX, 
+	SEVEN,
+	EIGHT, 
+	NINE, 
+	TEN, 
+	JACK, 
+	QUEEN, 
+	KING 
+} Rank;
+
+/*! 
+  \def When Ace is "soft", add this value.
+  \see Rank
+*/
 #define ACE_AS_11 10
 
-//#define isAce(rank) (rank == ACE)
-//#define isFace(card) (card.rank == JACK || card.rank == QUEEN || card.rank == KING)
-//#define is10(card) (card.rank == 10)
-
+/*! \struct Card
+    \brief  Defines a card.
+*/
 typedef struct {
 	Rank rank;
 	Suit suit;
 } Card;
 
+/*!
+  \brief Constructor
+  \param rank Card rank
+  \param suit Card suit
+*/
 Card Card_(Rank rank, Suit suit);
-Card Card_(Int rank, Suit suit);
+
+/*!
+  \brief Returns true if card is a J, Q, or K.
+  \param card Card
+*/
 bool isFace(Card* card);
+
+/*!
+  \brief Returns true if card is an Ace.
+  \param card Card
+*/
 bool isAce(Card* card);
+
+/*!
+  \brief Returns true if card is a 10, J, Q, or K.
+  \param card Card
+*/
 bool is10(Card* card);
-Card deal();
-Suit randomSuit();
-Rank randomRank();
-//#define randomRank() (random(1, 13))
+
+/*!
+  \brief Deals a card from the shoe.
+  \return Card
+*/
+Card deal(void);
+
+/*!
+  \brief Randomly selects a suit.
+  \return Suit
+*/
+Suit randomSuit(void);
+
+/*!
+  \brief Randomly selects a rank.
+  \return Suit
+*/
+Rank randomRank(void);

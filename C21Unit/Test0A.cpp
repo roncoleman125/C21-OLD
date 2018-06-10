@@ -6,16 +6,16 @@
 void test0a() {
 	Hand hand = Hand_();
 
-	Card card1 = Card_(10, DIAMONDS);
+	Card card1 = Card_(TEN, DIAMONDS);
 	hit(&hand, &card1);
 
-	Card card2 = Card_(3, HEARTS);
+	Card card2 = Card_(THREE, HEARTS);
 	hit(&hand, &card2);
 
-	Card card3 = Card_(7, CLUBS);
+	Card card3 = Card_(SEVEN, CLUBS);
 	hit(&hand, &card3);
 
-	Card upcard = Card_(10, SPADES);
+	Card upcard = Card_(TEN, SPADES);
 
 	Strategy bs = BasicStrategy_();
 	Play play = doSection1(&hand, &upcard, &bs);

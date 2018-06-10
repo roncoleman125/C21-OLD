@@ -1,3 +1,24 @@
+/*
+Copyright (c) Ron Coleman
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
 #include <assert.h>
 #include "Hand.h"
 #include "Player.h"
@@ -38,24 +59,24 @@ Hand Hand_(Card* card1, Card* card2) {
 Card hit(Player* player) {
 	assert(player->size > 0);
 
-	Int sz = player->size;
+	int sz = player->size;
 
 	return hit(player, sz-1);
 }
 
 
-Card hit(Player* player, Int handno) {
+Card hit(Player* player, int handno) {
 	assert(player->size > 0 && handno < MAX_YOUR_HANDS);
 
 	return hit(&player->hands[handno]);
 }
 
-Int score(Hand* hand) {
-	Int sum = 0;
+int score(Hand* hand) {
+	int sum = 0;
 
-	Int nAces = 0;
+	int nAces = 0;
 
-	for (Int k = 0; k < hand->size; k++) {
+	for (int k = 0; k < hand->size; k++) {
 		Card card = hand->cards[k];
 		sum += isFace(&hand->cards[k]) ? 10 :  hand->cards[k].rank;
 
@@ -65,7 +86,7 @@ Int score(Hand* hand) {
 	}
 
 	// Account for soft aces
-	for (Int k = 0; k < nAces; k++) {
+	for (int k = 0; k < nAces; k++) {
 		if (sum + ACE_AS_11 > 21)
 			break;
 
@@ -105,7 +126,7 @@ void hit(Hand* hand, Card* card) {
 	assert(hand->size < MAX_HAND_CARDS);
 	assert(!isBroke(hand));
 
-	Int index = hand->size++;
+	int index = hand->size++;
 
 	hand->cards[index] = *card;
 
