@@ -76,19 +76,22 @@ Card Card_(Rank rank, Suit suit);
 
 /*!
   \brief Returns true if card is a J, Q, or K.
-  \param card Card
+  \param card Card pointer
+  \return True if card is a face card
 */
 bool isFace(Card* card);
 
 /*!
   \brief Returns true if card is an Ace.
-  \param card Card
+  \param card Card pointer
+  \return True if card is an Ace
 */
 bool isAce(Card* card);
 
 /*!
   \brief Returns true if card is a 10, J, Q, or K.
-  \param card Card
+  \param card Card pointer
+  \return True if card is a 10
 */
 bool is10(Card* card);
 
@@ -106,6 +109,6 @@ Suit randomSuit(void);
 
 /*!
   \brief Randomly selects a rank.
-  \return Suit
+  \return Rank
 */
 Rank randomRank(void);
