@@ -102,8 +102,6 @@ void play(Strategy* strategy, Game* statistics) {
 
 	for (int index = 0; index < n; index++)
 		sum += statistics->count[index];
-
-	gameno++;
 }
 
 /*! \brief Play the player's hand. */
