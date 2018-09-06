@@ -66,10 +66,6 @@ Game start(Strategy* strategy, int ngames, int seed) {
 }
 
 void play(Strategy* strategy, Game* statistics) {
-	static int gameno = 0;
-	if (gameno == 256)
-		gameno = gameno;
-
 	// Create the heads-up game
 	Player player = Player_(strategy);
 	init(&player);
