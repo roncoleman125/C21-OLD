@@ -158,7 +158,7 @@ void playout(Hand* hand, Card* upcard) {
 void split(Hand* hand1, Card* upcard) {
 	assert(hand1->size == 2);
 
-	// If there's a split overflow, fallback to nonn-split
+	// If there's a split overflow, fallback to non-split
 	Player* player = (Player*)hand1->player;
 
 	if (player->size >= MAX_YOUR_HANDS) {
@@ -166,7 +166,7 @@ void split(Hand* hand1, Card* upcard) {
 		return;
 	}
 
-	// Allow splitting Aces once and hit each Ace once without playthrough.
+	// Allow splitting Aces once and hit each Ace once without further play-through.
 	bool playThrough = true;
 
 	if (isPair(hand1) && hand1->cards[0].rank == ACE)
@@ -204,6 +204,8 @@ void split(Hand* hand1, Card* upcard) {
 }
 
 void splitbackup(Hand* hand, Card* upcard) {
+	// If hand value is greater than 12, use section 1 to decide.
+	// Otherwise, use section 2.
 	Player* player = (Player*)hand->player;
 
 	Strategy* strategy = player->strategy;
@@ -238,7 +240,7 @@ void splitbackup(Hand* hand, Card* upcard) {
 
 	case SPLIT:
 		// A split here is tantamount to STAY
-		//		assert(false);
+		// assert(false);
 
 		break;
 
@@ -267,6 +269,7 @@ void play(Hand* dealer, Player* player, Game* statistics) {
 
 			remaining--;
 		}
+
 		// A+10 on split hand not "natural" blackjack and doesn't receive bonus.
 		// See https://en.wikipedia.org/wiki/Aces_and_eights_(blackjack).
 		else if (isBlackjack(player, hand)) {
@@ -287,7 +290,7 @@ void play(Hand* dealer, Player* player, Game* statistics) {
 		*/
 	}
 
-	// If no hands remaining, the dealer does not have to play
+	// If no hands remaining, the dealer not obligated to play
 	if (remaining == 0)
 		return;
 
